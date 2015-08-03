@@ -7,7 +7,7 @@ def main():
 
     #parametros
     lambda_entrada = 0.1    ##lambda do problema
-    numero_de_aleatorios = 100 ##representa o número de variáveis aleatórias que irá ser gerado
+    numero_de_aleatorios = 10000 ##representa o número de variáveis aleatórias que irá ser gerado
 
     fila = 0
     i = 0
@@ -18,13 +18,6 @@ def main():
     ##variáveis para calcular a média
     tempo = 0
     esperanca = 0
-
-    ##entrada_lista =  np.random.poisson(lambda_entrada,100)
-
-    entrada_lista =  np.random.exponential(1/lambda_entrada,numero_de_aleatorios)
-    tempo_proximo_lista = np.random.exponential(1/lambda_entrada,numero_de_aleatorios)
-    print(entrada_lista)
-    print(tempo_proximo_lista)
 
     fim = 0
 
@@ -43,7 +36,7 @@ def main():
             return
 
         while(entrada == 0 and i < numero_de_aleatorios):
-            entrada = int(entrada_lista[i])
+            entrada = int(np.random.exponential(1/lambda_entrada)) ##Gera uma nova entrada exponencial
             fila+= 1
             i += 1
 
@@ -53,7 +46,7 @@ def main():
         while(tempo_proximo == 0 and fila > 0 and j < numero_de_aleatorios):
             servidor = 1
             fila -= 1
-            tempo_proximo = int(tempo_proximo_lista[j])
+            tempo_proximo = int(np.random.exponential(1/lambda_entrada)) ##Gera um novo tempo exponencial
             j += 1
         if(fila == 0 and tempo_proximo == 0):
                 servidor = 0
@@ -63,8 +56,9 @@ def main():
         ##coisas inuteis para parar quando já tudo processado
         ##nunca será executável pois para depois da ultima remessa da entrada
         if(fim == 0):
-            print('fila = ' + str(fila))
-            print('servidor = ' + str(servidor))
+            ##print('fila = ' + str(fila))
+            ##print('servidor = ' + str(servidor))
+            pass
         else:
             return
         if(not(fila > 0 or ( i < numero_de_aleatorios and j < numero_de_aleatorios))):
