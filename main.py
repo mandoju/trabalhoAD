@@ -8,9 +8,10 @@ def main():
     i = 0
     servidor = 0
     tempo_proximo = 0
-    entrada_lista =  np.random.poisson(lambda_entrada)
-    tempo_proximo_lista = np.random.exponential(1 / lambda_entrada)
-
+    entrada_lista =  np.random.poisson(lambda_entrada,100)
+    tempo_proximo_lista = np.random.exponential(1 / lambda_entrada,100)
+    print(entrada_lista)
+    print(tempo_proximo_lista)
 
     while (i < 100):
         entrada = entrada_lista[i]
@@ -25,7 +26,7 @@ def main():
                 servidor = 1
                 fila -= 1
                 ## checar ser random exponential é a função ideal para o caso
-                tempo_proximo = tempo_proximo_lista[i]
+                tempo_proximo = int(tempo_proximo_lista[i])
                 print('tempo_proximo = ' + str(tempo_proximo))
 
         else:
