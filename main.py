@@ -37,21 +37,13 @@ def main():
 
     while (1):
 
-        ##entrada = entrada_lista[i]
-
-         ## while nescessário caso caia em uma entrada = 0 novamente
-
-
         if(i == numero_de_aleatorios and j == numero_de_aleatorios):
             esperanca = esperanca / tempo
             print('a número médio de pessoas no sistema é: ' + str(esperanca))
             return
 
         while(entrada == 0 and i < numero_de_aleatorios):
-            #fila += entrada
-            ##print('passei aqui')
             entrada = int(entrada_lista[i])
-            ##print('a entrada ficou' + str(entrada))
             fila+= 1
             i += 1
 
@@ -63,27 +55,10 @@ def main():
             fila -= 1
             tempo_proximo = int(tempo_proximo_lista[j])
             j += 1
-            ##print('j vale ' + str(j))
-            ##print('tempo_proximo = ' + str(tempo_proximo))
         if(fila == 0 and tempo_proximo == 0):
                 servidor = 0
         else:
                 tempo_proximo -= 1
-
-        ##if (servidor == 0):
-        ##   if (fila > 0 and j < 100):
-        ##        servidor = 1
-        ##        fila -= 1
-                ## checar ser random exponential é a função ideal para o caso
-        ##        tempo_proximo = int(tempo_proximo_lista[j])
-        ##        j += 1
-        ##        print('tempo_proximo = ' + str(tempo_proximo))
-
-        ##else:
-
-        ##    tempo_proximo -= 1
-
-
 
         ##coisas inuteis para parar quando já tudo processado
         ##nunca será executável pois para depois da ultima remessa da entrada
