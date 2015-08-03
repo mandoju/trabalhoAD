@@ -1,3 +1,4 @@
+# -*- coding: latin-1 -*-
 __author__ = 'jorge'
 import numpy as np
 def main():
