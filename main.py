@@ -16,12 +16,18 @@ def main():
     print(tempo_proximo_lista)
     fim = 0
 
-    entrada = 0
-    tempo_proximo = 0
+
+    ##TODO: melhores nomes para as variáveis
+
+    entrada = 0  ##tempo até a próxima entrada
+    tempo_proximo = 0  ##tempo até terminar a execução no servidor
+
 
     while (1):
 
         ##entrada = entrada_lista[i]
+
+         ## while nescessário caso caia em uma entrada = 0 novamente
         while(entrada == 0 and i < 100):
             #fila += entrada
             ##print('passei aqui')
@@ -32,6 +38,7 @@ def main():
 
         entrada -= 1
 
+        ## while nescessário caso caia em um tempo = 0 novamente
         while(tempo_proximo == 0 and fila > 0 and j < 100):
             servidor = 1
             fila -= 1
