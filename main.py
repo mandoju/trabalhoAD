@@ -44,7 +44,7 @@ def main():
             while(tempo_proximo == 0 and fila > 0 and j < numero_de_aleatorios):
                 servidor = 1
                 fila -= 1
-                tempo_proximo = int(np.random.exponential(1/lambda_entrada)) ##Gera um novo tempo exponencial
+                tempo_proximo = int(np.random.exponential(1)) ##Gera um novo tempo exponencial
                 j += 1
             if(fila == 0 and tempo_proximo == 0):
                     servidor = 0
