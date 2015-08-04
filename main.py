@@ -118,7 +118,7 @@ def deterministico():
             while(tempo_proximo == 0 and fila > 0):
                 servidor = 1
                 fila -= 1
-                tempo_proximo = int(1)
+                tempo_proximo = int(np.random.exponential(1))
                 j += 1
             if(fila == 0 and tempo_proximo == 0):
                     servidor = 0
@@ -196,7 +196,7 @@ def uniforme():
             while(tempo_proximo == 0 and fila > 0):
                 servidor = 1
                 fila -= 1
-                tempo_proximo = int(u_servidor)
+                tempo_proximo = int(np.random.exponential(u_servidor))
                 j += 1
             if(fila == 0 and tempo_proximo == 0):
                     servidor = 0
