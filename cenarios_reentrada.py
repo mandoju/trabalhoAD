@@ -99,8 +99,12 @@ def cenario5():
             ##    media= media + esperanca/numero_ciclos
             ##    break
 
+            resto = 0
             while(entrada == 0):
                 entrada = int(lambda_tempo) ##Gera uma nova entrada exponencial
+                resto += lambda_tempo - int(lambda_tempo)
+                if(resto > 1):
+                    entrada += 1
                 fila+= 1
                 i += 1
 

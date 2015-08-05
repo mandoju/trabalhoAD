@@ -73,9 +73,9 @@ def deterministico():
 
 
     #parametros
-    lambda_entrada = 0.95    ##lambda do problema
+    lambda_entrada = 2    ##lambda do problema
     lambda_tempo = 1/lambda_entrada ##lambda para tempo
-    numero_ciclos= 10000
+    numero_ciclos= 1000
     tempo_simulacao = 1000  ##número de loops do while
 
     media=0
@@ -94,7 +94,6 @@ def deterministico():
 
         while (1):
 
-
             if(tempo == tempo_simulacao):
                 esperanca = esperanca / tempo
                 #print('a número médio de pessoas no sistema é: ' + str(esperanca))
@@ -106,8 +105,12 @@ def deterministico():
             ##    media= media + esperanca/numero_ciclos
             ##    break
 
+            resto = 0
             while(entrada == 0):
                 entrada = int(lambda_tempo) ##Gera uma nova entrada exponencial
+                resto += lambda_tempo - int(lambda_tempo)
+                if(resto > 1):
+                    entrada += 1
                 fila+= 1
                 i += 1
 
