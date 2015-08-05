@@ -1,6 +1,7 @@
 # -*- coding: latin-1 -*-
 __author__ = 'jorge'
 import numpy as np
+import cenarios_reentrada as cn
 def main():
 
 
@@ -238,4 +239,5 @@ def uniforme():
 ##executando a determinística
 ##deterministico()
 ##executando uniforme
-uniforme()
+##uniforme()
+cn.cenario4()

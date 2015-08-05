@@ -5,8 +5,8 @@ import numpy as np
 def cenario4():
    #parametros
     u_servidor = 1    ##U do servidor (tem que variar 1,1,5,2...10
-    numero_ciclos= 10000
-    tempo_simulacao = 10000
+    numero_ciclos= 1
+    tempo_simulacao = 1000000
 
     ##TODO: melhores nomes para as variáveis
 
@@ -24,7 +24,7 @@ def cenario4():
         tempo = 0
         esperanca = 0
         fim = 0
-
+        print(q)
         while (1):
 
             if(tempo == tempo_simulacao):
@@ -41,19 +41,25 @@ def cenario4():
             entrada -= 1
 
             ## while nescessário caso caia em um tempo = 0 novamente
+            resto = 0
+
+
             while(tempo_proximo == 0 and fila > 0):
                 servidor = 1
                 fila -= 1
                 aleatorio = np.random.random_sample()
-                if(aleatorio > 0.9):
+                if(aleatorio > 0.1):
                     fila +=1
-                tempo_proximo = int(np.random.exponential(1/u_servidor)) ##Gera um novo tempo exponencial
+                exponencial = np.random.exponential(1/u_servidor)
+                tempo_proximo = int(exponencial)
+                resto += exponencial - tempo_proximo
+                if(resto > 1):
+                    tempo_proximo += 1
                 j += 1
             if(fila == 0 and tempo_proximo == 0):
                     servidor = 0
             else:
                     tempo_proximo -= 1
-
             ##coisas inuteis para parar quando já tudo processado
             ##nunca será executável pois para depois da ultima remessa da entrada
             esperanca += fila + servidor ##soma o número de clientes no sistema
