@@ -47,7 +47,7 @@ def cenario4():
                 aleatorio = np.random.random_sample()
                 if(aleatorio > 0.9):
                     fila +=1
-                tempo_proximo = int(np.random.exponential(u_servidor)) ##Gera um novo tempo exponencial
+                tempo_proximo = int(np.random.exponential(1/u_servidor)) ##Gera um novo tempo exponencial
                 j += 1
             if(fila == 0 and tempo_proximo == 0):
                     servidor = 0
@@ -118,7 +118,7 @@ def cenario5():
                 aleatorio = np.random.random_sample()
                 if(aleatorio > 0.9):
                     fila +=1
-                tempo_proximo = int(np.random.exponential(u_servidor))
+                tempo_proximo = int(np.random.exponential(1/u_servidor))
                 j += 1
             if(fila == 0 and tempo_proximo == 0):
                     servidor = 0
