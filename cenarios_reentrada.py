@@ -138,7 +138,7 @@ def cenario5():
     ##executando a função main
     print("Media das medias: ", media)
 
-def cenario5():
+def cenario6():
 
 
     ##ALERTA!
