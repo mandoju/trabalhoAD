@@ -155,7 +155,7 @@ def uniforme():
     ##1, 1.5,2,2.5,...,10
 
     #parametros
-    u_servidor = 1  ##este parametro que irá variar
+    u_servidor = 5.5  ##este parametro que irá variar
     numero_ciclos= 1000
     tempo_simulacao= 1000 ##número de loops do while
 
@@ -190,7 +190,7 @@ def uniforme():
 
             resto = 0
             while(entrada == 0):
-                uniforme = 1/np.random.uniform(5,15)
+                uniforme = np.random.uniform(5,15)
                 entrada = int(uniforme) ##Gera uma nova entrada exponencial
                 resto += uniforme - entrada
                 if(resto > 1):

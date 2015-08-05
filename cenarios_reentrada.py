@@ -184,8 +184,12 @@ def cenario6():
             ##    media= media + esperanca/numero_ciclos
             ##    break
 
-            while(entrada == 0 and i < numero_de_aleatorios):
-                entrada = int(np.random.uniform(50,150)) ##Gera uma nova entrada exponencial
+            while(entrada == 0):
+                uniforme = np.random.uniform(5,15)
+                entrada = int(uniforme) ##Gera uma nova entrada exponencial
+                resto += uniforme - entrada
+                if(resto > 1):
+                    entrada += 1
                 fila+= 1
                 i += 1
 
@@ -193,7 +197,7 @@ def cenario6():
 
             ## while nescessário caso caia em um tempo = 0 novamente
             resto = 0
-            while(tempo_proximo == 0 and fila > 0 and j < numero_de_aleatorios):
+            while(tempo_proximo == 0 and fila > 0):
                 servidor = 1
                 fila -= 1
                 aleatorio = np.random.random_sample()
