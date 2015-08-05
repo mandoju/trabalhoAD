@@ -199,7 +199,11 @@ def cenario6():
                 aleatorio = np.random.random_sample()
                 if(aleatorio > 0.9):
                     fila +=1
-                tempo_proximo = int(np.random.exponential(u_servidor))
+                exponencial = np.random.exponential(1/u_servidor)
+                tempo_proximo = int(exponencial)
+                resto += exponencial - tempo_proximo
+                if(resto > 1):
+                    tempo_proximo += 1
                 j += 1
             if(fila == 0 and tempo_proximo == 0):
                     servidor = 0

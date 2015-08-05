@@ -5,7 +5,7 @@ def main():
 
 
     #parametros
-    lambda_entrada = 0.05    ##lambda do problema
+    lambda_entrada = 0.51    ##lambda do problema
     numero_de_aleatorios = 100 ##representa o número de variáveis aleatórias que irá ser gerado
     numero_ciclos= 10000
 
@@ -73,8 +73,9 @@ def deterministico():
 
 
     #parametros
-    lambda_entrada = 2    ##lambda do problema
+    lambda_entrada = 0.2   ##lambda do problema
     lambda_tempo = 1/lambda_entrada ##lambda para tempo
+    print(lambda_tempo)
     numero_ciclos= 1000
     tempo_simulacao = 1000  ##número de loops do while
 
@@ -155,8 +156,8 @@ def uniforme():
 
     #parametros
     u_servidor = 1  ##este parametro que irá variar
-    numero_ciclos= 10000
-    tempo_simulacao= 10000 ##número de loops do while
+    numero_ciclos= 1000
+    tempo_simulacao= 1000 ##número de loops do while
 
     ##TODO: melhores nomes para as variáveis
 
@@ -187,8 +188,13 @@ def uniforme():
             ##    media= media + esperanca/numero_ciclos
             ##    break
 
+            resto = 0
             while(entrada == 0):
-                entrada = int(np.random.uniform(5,15)) ##Gera uma nova entrada exponencial
+                uniforme = 1/np.random.uniform(5,15)
+                entrada = int(uniforme) ##Gera uma nova entrada exponencial
+                resto += uniforme - entrada
+                if(resto > 1):
+                    entrada += 1
                 fila+= 1
                 i += 1
 
@@ -199,7 +205,11 @@ def uniforme():
             while(tempo_proximo == 0 and fila > 0):
                 servidor = 1
                 fila -= 1
-                tempo_proximo = int(np.random.exponential(u_servidor))
+                exponencial = np.random.exponential(1/u_servidor)
+                tempo_proximo = int(exponencial)
+                resto += exponencial - tempo_proximo
+                if(resto > 1):
+                    tempo_proximo += 1
                 j += 1
             if(fila == 0 and tempo_proximo == 0):
                     servidor = 0
@@ -226,4 +236,6 @@ def uniforme():
 ##executando a M/M/1
 ##main()
 ##executando a determinística
-deterministico()
+##deterministico()
+##executando uniforme
+uniforme()
