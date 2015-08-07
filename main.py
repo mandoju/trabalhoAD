@@ -2,6 +2,7 @@
 __author__ = 'jorge'
 import numpy as np
 import cenarios_reentrada as cn
+import checar_saida as ch
 def main():
 
 
@@ -240,4 +241,5 @@ def uniforme():
 ##deterministico()
 ##executando uniforme
 ##uniforme()
-cn.cenario4()
+##cn.cenario4()
+ch.poisson1()
