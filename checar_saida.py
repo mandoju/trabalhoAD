@@ -95,6 +95,7 @@ def poisson1():
     divisao_ciclos = np.array([numero_ciclos] * 100)
     ##tempo_entre_saida_final = [(x)/numero_ciclos for x in tempo_entre_saida]
     tempo_entre_saida_final = np.divide(tempo_entre_saida_final,divisao_ciclos)
+    tempo_entre_saida_final = np.cumsum(tempo_entre_saida_final)
     print(tempo_entre_saida_final)
 
 
