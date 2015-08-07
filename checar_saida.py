@@ -1,7 +1,6 @@
 # -*- coding: latin-1 -*-
 __author__ = 'jorge'
 import numpy as np
-import cenarios_reentrada as cn
 from operator import add
 
 def poisson1():
@@ -9,8 +8,9 @@ def poisson1():
 
     #parametros
     lambda_entrada = 0.5    ##lambda do problema
-    numero_de_aleatorios = 100 ##representa o número de variáveis aleatórias que irá ser gerado
-    numero_ciclos= 10000
+    #numero_de_aleatorios = 10000 ##representa o número de variáveis aleatórias que irá ser gerado
+    tempo_simulacao = 10000
+    numero_ciclos= 1
 
     ##TODO: melhores nomes para as variáveis
 
@@ -29,26 +29,34 @@ def poisson1():
         esperanca = 0
         fim = 0
 
-        tempo_entre_saida_atual = 0
-        tempo_entre_saida =  [0] * 100
+        tempo_entre_saida =  []
 
         total_saido = 0
+        stasis = 0
+
 
         while (1):
 
-            if(i == numero_de_aleatorios and j == numero_de_aleatorios):
+            #if(i == numero_de_aleatorios and j == numero_de_aleatorios):
                 #esperanca = esperanca / tempo
                 #print('a número médio de pessoas no sistema é: ' + str(esperanca))
                 #media= media + esperanca/numero_ciclos
-                tempo_entre_saida[:] = [x / total_saido for x in tempo_entre_saida]
+                ##tempo_entre_saida[:] = [x / total_saido for x in tempo_entre_saida]
                 ##print('o tempo entre saida é:')
                 ##print(tempo_entre_saida)
                 ##tempo_entre_saida_final = map(add,tempo_entre_saida_final,tempo_entre_saida)
-                tempo_entre_saida_final = tempo_entre_saida_final + np.array(tempo_entre_saida)
+                ##tempo_entre_saida_final = tempo_entre_saida_final + np.array(tempo_entre_saida)
                 ##tempo_entre_saida_final = [(x)/numero_ciclos for x in tempo_entre_saida]
+            #    break
+            if(tempo == tempo_simulacao):
+                esperanca = esperanca / tempo
+                #print('a número médio de pessoas no sistema é: ' + str(esperanca))
+                media= media + esperanca/numero_ciclos
                 break
 
-            while(entrada == 0 and i < numero_de_aleatorios):
+
+
+            while(entrada == 0):
                 entrada = int(np.random.exponential(1/lambda_entrada)) ##Gera uma nova entrada exponencial
                 fila+= 1
                 i += 1
@@ -56,47 +64,43 @@ def poisson1():
             entrada -= 1
 
             ## while nescessário caso caia em um tempo = 0 novamente
-            while(tempo_proximo == 0 and fila > 0 and j < numero_de_aleatorios):
+            while(tempo_proximo == 0 and fila > 0):
                 servidor = 1
                 fila -= 1
-
-                ##aqui vamos colocar na lista que somou + 1
-                tempo_entre_saida[tempo_entre_saida_atual] += 1
-                tempo_entre_saida_atual = 0
+                ##aqui vamos colocar na lista o tempo que vai demorar
                 total_saido += 1
 
-                tempo_proximo = int(np.random.exponential(1)) ##Gera um novo tempo exponencial
+                exponencial = np.random.exponential(1)
+                tempo_proximo = int(exponencial) ##Gera um novo tempo exponencial
+                tempo_entre_saida.append(stasis + exponencial)
+                stasis = 0
+
                 j += 1
             if(fila == 0 and tempo_proximo == 0):
                     ##aqui vamos contar o tempo da pessoa que saiu
-                    tempo_entre_saida[tempo_entre_saida_atual] += 1
-                    tempo_entre_saida_atual = 0
-                    total_saido += 1
+                    stasis +=1
                     servidor = 0
             else:
                     tempo_proximo -= 1
 
             ##coisas inuteis para parar quando já tudo processado
             ##nunca será executável pois para depois da ultima remessa da entrada
-            if(fim == 0):
-                ##print('fila = ' + str(fila))
-                ##print('servidor = ' + str(servidor))
-                pass
-            else:
-                return
-            if(not(fila > 0 or ( i < numero_de_aleatorios and j < numero_de_aleatorios))):
-                fim = 1
 
-            tempo_entre_saida_atual += 1
+
             esperanca += fila + servidor ##soma o número de clientes no sistema
             tempo += 1  ##adiciona mais um no tempo
 
     ##executando a função main
     divisao_ciclos = np.array([numero_ciclos] * 100)
-    ##tempo_entre_saida_final = [(x)/numero_ciclos for x in tempo_entre_saida]
-    tempo_entre_saida_final = np.divide(tempo_entre_saida_final,divisao_ciclos)
-    tempo_entre_saida_final = np.cumsum(tempo_entre_saida_final)
-    print(tempo_entre_saida_final)
+
+    #print(tempo_entre_saida)
+    total = len(tempo_entre_saida)
+    print(total)
+    #y_temp = np.array(range(total))
+    y = np.array(range(total))/total
+
+
+    return tempo_entre_saida,y
 
 
 ##TODO: ESTA FUNÇÃO NÃO ESTÁ IMPLEMENTADA
