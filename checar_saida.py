@@ -99,6 +99,7 @@ def poisson1():
     #y_temp = np.array(range(total))
     y = np.array(range(total))/total
 
+    tempo_entre_saida.sort()
 
     return tempo_entre_saida,y
 
