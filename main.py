@@ -3,6 +3,8 @@ __author__ = 'jorge'
 import numpy as np
 import cenarios_reentrada as cn
 import checar_saida as ch
+from simulacoes import cenario1 as c1
+
 def main():
 
 
@@ -242,4 +244,6 @@ def uniforme():
 ##executando uniforme
 ##uniforme()
 ##cn.cenario4()
-ch.poisson1()
+##ch.poisson1()
+##c1.poisson1()
+main()

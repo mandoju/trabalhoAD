@@ -1,5 +1,5 @@
-__author__ = 'jorge'
 # -*- coding: latin-1 -*-
+__author__ = 'Rodrigo'
 
 import matplotlib.pyplot as plt
 import numpy as np
