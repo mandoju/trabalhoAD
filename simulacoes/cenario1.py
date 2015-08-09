@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.interpolate import spline
 
-def main():
+def simula1():
 
     #parametros
     numero_de_aleatorios = 100 ##representa o número de variáveis aleatórias que irá ser gerado
@@ -90,5 +90,4 @@ def main():
     plt.legend(loc=1, prop={'size':10})
     plt.show()
 
-main()
 

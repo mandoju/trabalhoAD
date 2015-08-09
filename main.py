@@ -7,7 +7,6 @@ from simulacoes import cenario1 as c1
 
 def main():
 
-
     #parametros
     lambda_entrada = 0.51    ##lambda do problema
     numero_de_aleatorios = 100 ##representa o número de variáveis aleatórias que irá ser gerado
@@ -74,6 +73,7 @@ def main():
 
 
 def deterministico():
+
 
 
     #parametros
@@ -152,7 +152,7 @@ def deterministico():
 
 
 def uniforme():
-
+    print('oi')
 
     ##ALERTA!
     ##NESTE CASO SÓ ALTERA O U DO SERVIDOR
@@ -237,6 +237,7 @@ def uniforme():
     ##executando a função main
     print("Media das medias: ", media)
 
+
 ##executando a M/M/1
 ##main()
 ##executando a determinística
@@ -246,4 +247,5 @@ def uniforme():
 ##cn.cenario4()
 ##ch.poisson1()
 ##c1.poisson1()
-main()
+##main()
+ch.poisson2()
