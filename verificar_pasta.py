@@ -151,6 +151,8 @@ def pasta2():
 
         total_vazio = 0
 
+        ultima_entrada = 0
+
         while (1):
 
             if(tempo == tempo_simulacao):
@@ -163,11 +165,12 @@ def pasta2():
 
                 if(servidor == 0 ):
                     tempo_entre_entrada_vazio +=  exponencial_entrada
-                    total_vazio += 1
+                    total_vazio += tempo - ultima_entrada
 
                 exponencial_entrada = np.random.exponential(1/lambda_entrada)
                 entrada = int(exponencial_entrada) ##Gera uma nova entrada exponencial
                 fila+= 1
+                ultima_entrada = tempo
                 i += 1
 
             entrada -= 1
@@ -182,11 +185,11 @@ def pasta2():
                 fila -= 1
 
                 if(volta == 1):
-                    fila +=1
                     if(servidor == 0):
                         tempo_entre_entrada_vazio +=  exponencial_entrada
-                        total_vazio += 1
-
+                        total_vazio += tempo - ultima_entrada
+                    fila += 1
+                    ultima_entrada = tempo
 
 
                 aleatorio = np.random.random_sample()
