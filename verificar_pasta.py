@@ -11,7 +11,8 @@ def pasta1():
     lambda_entrada = 0.5    ##lambda do problema
     #numero_de_aleatorios = 10000 ##representa o número de variáveis aleatórias que irá ser gerado
     tempo_simulacao = 10000
-    numero_ciclos= 1
+    numero_ciclos= 10000
+    exponencial_entrada = 0
 
     ##TODO: melhores nomes para as variáveis
 
@@ -66,6 +67,7 @@ def pasta1():
 
                 if(servidor == 0 ):
                     tempo_entre_entrada_vazio +=  exponencial_entrada
+                    total_vazio += 1
 
                 exponencial_entrada = np.random.exponential(1/lambda_entrada)
 
@@ -104,7 +106,7 @@ def pasta1():
             tempo += 1  ##adiciona mais um no tempo
 
     ##executando a função main
-    divisao_ciclos = np.array([numero_ciclos] * 100)
+    #divisao_ciclos = np.array([numero_ciclos] * 100)
 
     #print(tempo_entre_saida)
     ##total = len(tempo_entre_saida)
@@ -116,5 +118,8 @@ def pasta1():
 
     tempo_vazio = tempo_vazio / tempo_simulacao
     tempo_entre_entrada_vazio = tempo_entre_entrada_vazio / tempo_simulacao
+    total_vazio /= total_saido
 
-    return tempo_vazio,tempo_entre_entrada_vazio
+    return tempo_vazio,tempo_entre_entrada_vazio,total_vazio
+
+print(pasta1())
