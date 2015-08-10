@@ -9,8 +9,9 @@ from scipy.interpolate import spline
 #parametros
 lambda_entrada = 0.5    ##lambda do problema
 #numero_de_aleatorios = 10000 ##representa o número de variáveis aleatórias que irá ser gerado
-tempo_simulacao = 1000
+tempo_simulacao = 10000 #10000
 numero_ciclos= 1
+cdf_expo = []
 
 ##TODO: melhores nomes para as variáveis
 
@@ -100,16 +101,23 @@ total = len(tempo_entre_saida)
 y = np.array(range(total))/total
 tempo_entre_saida.sort()
 
+for tempo in tempo_entre_saida:
+    analitico = 1 - np.exp(-1*lambda_entrada*tempo)
+    print(analitico)
+    cdf_expo.append(analitico)
+
 plt.figure(figsize=(8, 6), dpi=100)
 
 x_smooth = np.linspace(min(tempo_entre_saida), max(tempo_entre_saida), 1000)
 y_smooth = spline (tempo_entre_saida, y, x_smooth)
-plt.plot(x_smooth, y_smooth,'-', label="Curva Amortizada")
-#plt.plot(xp, yp, 'bo', label="Pontos Da Curva")
+#plt.plot(x_smooth, y_smooth,'-bo', label="Curva Amortizada")
+
+plt.plot(tempo_entre_saida, y, '-bo', label="Pontos Da Curva")
+plt.plot(tempo_entre_saida, cdf_expo,'-r', label="Exponencial")
 
 plt.axis([0, 1.1*(max(tempo_entre_saida)), 0, 1.2*(max(y))])
 plt.suptitle('Poisson1', fontsize=20)
-plt.xlabel('tempo_entre_saidas', fontsize=15)
+plt.xlabel('Tempo entre saídas', fontsize=15)
 plt.ylabel('Y', fontsize=15)
 plt.legend(loc=1, prop={'size':10})
 plt.show()
