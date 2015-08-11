@@ -11,7 +11,7 @@ def simula_poisson3():
    #parametros
     u_servidor = 1    ##U do servidor (tem que variar 1,1,5,2...10
     numero_ciclos= 1
-    tempo_simulacao = 1000000
+    tempo_simulacao = 10000
 
     ##TODO: melhores nomes para as variáveis
 
@@ -104,15 +104,19 @@ def simula_poisson3():
     tempo_entre_saida.sort()
 
     plt.figure(figsize=(8, 6), dpi=100)
+    plt.plot(tempo_entre_saida, y, 'bo', label="Pontos Da Curva")
 
-    x_smooth = np.linspace(min(tempo_entre_saida), max(tempo_entre_saida), 1000)
-    y_smooth = spline (tempo_entre_saida, y, x_smooth)
-    plt.plot(x_smooth, y_smooth,'-', label="Curva Amortizada")
-    #plt.plot(xp, yp, 'bo', label="Pontos Da Curva")
+
+    cdf_expo = []
+    for tempo in tempo_entre_saida:
+        analitico = 1 - np.exp(-1*lambda_entrada*tempo)
+        ##print(analitico)
+        cdf_expo.append(analitico)
+    plt.plot(tempo_entre_saida, cdf_expo,'-r', label="Exponencial")
 
     plt.axis([0, 1.1*(max(tempo_entre_saida)), 0, 1.2*(max(y))])
-    plt.suptitle('Poisson1', fontsize=20)
-    plt.xlabel('tempo_entre_saidas', fontsize=15)
+    plt.suptitle('Cenário 4 - Partidas exógenas', fontsize=20)
+    plt.xlabel('Tempo entre saídas', fontsize=15)
     plt.ylabel('Y', fontsize=15)
     plt.legend(loc=1, prop={'size':10})
     plt.show()

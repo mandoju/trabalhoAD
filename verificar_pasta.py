@@ -41,6 +41,7 @@ def pasta1():
         total_saido = 0
         stasis = 0
 
+        exponencial_entrada = 0
 
         while (1):
 
@@ -120,6 +121,10 @@ def pasta1():
     tempo_entre_entrada_vazio = tempo_entre_entrada_vazio / tempo_simulacao
     total_vazio /= total_saido
 
+    print(tempo_vazio)
+    print(total_vazio)
+    print(tempo_entre_entrada_vazio)
+
     return tempo_vazio,tempo_entre_entrada_vazio,total_vazio
 
 def pasta2():
@@ -151,7 +156,18 @@ def pasta2():
 
         total_vazio = 0
 
+        total_saido = 0
+
         ultima_entrada = 0
+
+        exponencial_entrada = 0
+        exponencial_saida = 0
+
+        aleatorio = np.random.random_sample()
+        if(aleatorio > 0.1):
+             volta = 1
+        else:
+             volta = 0
 
         while (1):
 
@@ -190,6 +206,8 @@ def pasta2():
                         total_vazio += tempo - ultima_entrada
                     fila += 1
                     ultima_entrada = tempo
+                else:
+                    total_saido +=1
 
 
                 aleatorio = np.random.random_sample()
@@ -215,4 +233,14 @@ def pasta2():
             tempo += 1  ##adiciona mais um no tempo
 
     ##executando a função main
-    print("Media das medias: ", media)
+    ##print("Media das medias: ", media)
+
+    tempo_vazio = tempo_vazio / tempo_simulacao
+    tempo_entre_entrada_vazio = tempo_entre_entrada_vazio / tempo_simulacao
+    total_vazio /= total_saido
+
+    print(tempo_vazio)
+    print(tempo_entre_entrada_vazio)
+    print(total_vazio)
+
+    return tempo_vazio,tempo_entre_entrada_vazio,total_vazio

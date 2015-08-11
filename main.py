@@ -3,8 +3,12 @@ __author__ = 'jorge'
 import numpy as np
 import cenarios_reentrada as cn
 import checar_saida as ch
-from simulacoes import cenario1 as c1
 
+import verificar_pasta as pasta
+from simulacoes import cenario1 as c1
+from simulacoes import poisson2 as p2
+from simulacoes import poisson3 as p3
+from simulacoes import poisson4 as p4
 def main():
 
     #parametros
@@ -248,4 +252,6 @@ def uniforme():
 ##ch.poisson1()
 ##c1.poisson1()
 ##main()
-ch.poisson2()
+##ch.poisson2()
+##pasta.pasta1()
+p2.simula_poisson2()
