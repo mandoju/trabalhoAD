@@ -25,7 +25,9 @@ def simula_poisson4():
         servidor = 0
         tempo_proximo = 0
         entrada = 0  ##tempo até a próxima entrada
+        entrada_raw = 0
         tempo_proximo = 0  ##tempo até terminar a execução no servidor
+        tempo_proximo_raw = 0
         ##variáveis para calcular a média
         tempo = 0
         esperanca = 0
@@ -42,18 +44,25 @@ def simula_poisson4():
 
             if(tempo == tempo_simulacao):
                 esperanca = esperanca / tempo
-                tempo_entre_entrada.append(exponencial)
+                #tempo_entre_entrada.append(exponencial_entrada)
                 #print('a número médio de pessoas no sistema é: ' + str(esperanca))
                 media= media + esperanca/numero_ciclos
                 break
 
             while(entrada == 0):
-                exponencial = np.random.exponential(1/lambda_entrada)
-                entrada = int(exponencial) ##Gera uma nova entrada exponencial
+                exponencial_entrada = np.random.exponential(1/lambda_entrada)
+                entrada = int(exponencial_entrada) ##Gera uma nova entrada exponencial
+
+                entrada_raw = exponencial_entrada
                 fila+= 1
+
+                if(tempo_proximo_raw <= entrada_raw):
+                        tempo_entre_entrada.append( entrada_raw - tempo_proximo_raw)
+
                 i += 1
 
             entrada -= 1
+            entrada_raw -= 1
 
             ## while nescessário caso caia em um tempo = 0 novamente
             resto = 0
@@ -61,9 +70,10 @@ def simula_poisson4():
 
             while(tempo_proximo == 0 and fila > 0):
                 servidor = 1
-                exponencial = np.random.exponential(1/u_servidor)
-                tempo_proximo = int(exponencial)
-                resto += exponencial - tempo_proximo
+                exponencial_servico = np.random.exponential(1/u_servidor)
+                tempo_proximo = int(exponencial_servico)
+                tempo_proximo_raw = exponencial_servico
+                resto += exponencial_servico - tempo_proximo
 
                 if(volta == 0):
                     fila -=1
@@ -71,7 +81,8 @@ def simula_poisson4():
                 aleatorio = np.random.random_sample()
                 if(aleatorio > 0.1):
                     volta = 1
-                    tempo_entre_entrada.append(exponencial)
+                    if(tempo_proximo_raw >= entrada_raw):
+                        tempo_entre_entrada.append(tempo_proximo_raw - entrada_raw )
                     ##fila +=1
                 else:
                     ##tempo_entre_saida.append(stasis + exponencial)
@@ -91,6 +102,7 @@ def simula_poisson4():
                     servidor = 0
             else:
                     tempo_proximo -= 1
+                    tempo_proximo_raw -= 1
             ##coisas inuteis para parar quando já tudo processado
             ##nunca será executável pois para depois da ultima remessa da entrada
             esperanca += fila + servidor ##soma o número de clientes no sistema

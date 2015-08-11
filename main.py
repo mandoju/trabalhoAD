@@ -254,4 +254,4 @@ def uniforme():
 ##main()
 ##ch.poisson2()
 ##pasta.pasta1()
-p2.simula_poisson2()
+p4.simula_poisson4()
