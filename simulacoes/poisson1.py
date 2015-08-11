@@ -105,12 +105,20 @@ def simula_poisson1():
 
     x_smooth = np.linspace(min(tempo_entre_saida), max(tempo_entre_saida), 1000)
     y_smooth = spline (tempo_entre_saida, y, x_smooth)
-    plt.plot(x_smooth, y_smooth,'-', label="Curva Amortizada")
-    #plt.plot(xp, yp, 'bo', label="Pontos Da Curva")
+    #plt.plot(x_smooth, y_smooth,'-bo', label="Curva Amortizada")
+    plt.plot(tempo_entre_saida, y, '-bo', label="Pontos Da Curva")
+
+
+    cdf_expo = []
+    for tempo in tempo_entre_saida:
+        analitico = 1 - np.exp(-1*lambda_entrada*tempo)
+        print(analitico)
+        cdf_expo.append(analitico)
+    plt.plot(tempo_entre_saida, cdf_expo,'-r', label="Exponencial")
 
     plt.axis([0, 1.1*(max(tempo_entre_saida)), 0, 1.2*(max(y))])
     plt.suptitle('Poisson1', fontsize=20)
-    plt.xlabel('tempo_entre_saidas', fontsize=15)
+    plt.xlabel('Tempo entre saídas', fontsize=15)
     plt.ylabel('Y', fontsize=15)
     plt.legend(loc=1, prop={'size':10})
     plt.show()
