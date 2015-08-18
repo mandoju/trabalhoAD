@@ -5,10 +5,13 @@ import cenarios_reentrada as cn
 import checar_saida as ch
 
 import verificar_pasta as pasta
+import academia as academia
 from simulacoes import cenario1 as c1
 from simulacoes import poisson2 as p2
 from simulacoes import poisson3 as p3
 from simulacoes import poisson4 as p4
+
+
 def main():
 
     #parametros
@@ -254,4 +257,5 @@ def uniforme():
 ##main()
 ##ch.poisson2()
 ##pasta.pasta1()
-p4.simula_poisson4()
+##p4.simula_poisson4()
+academia.academia()
