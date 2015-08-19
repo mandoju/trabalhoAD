@@ -258,4 +258,4 @@ def uniforme():
 ##ch.poisson2()
 ##pasta.pasta1()
 ##p4.simula_poisson4()
-academia.academia()
+academia.academia_cliente()
