@@ -112,7 +112,7 @@ def academia():
                 tempo_proximo_bicicleta -= tempo_passado
                 utilizacao_bicicleta += tempo_passado
             tempo += tempo_passado
-            ##print(tempo)
+            print(tempo)
 
 
 

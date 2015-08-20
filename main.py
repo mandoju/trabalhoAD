@@ -7,6 +7,7 @@ import checar_saida as ch
 import verificar_pasta as pasta
 import academia as academia
 from simulacoes import cenario1 as c1
+from simulacoes import cenario2 as c2
 from simulacoes import poisson2 as p2
 from simulacoes import poisson3 as p3
 from simulacoes import poisson4 as p4
@@ -258,4 +259,7 @@ def uniforme():
 ##ch.poisson2()
 ##pasta.pasta1()
 ##p4.simula_poisson4()
-academia.academia_cliente()
+##academia.academia_cliente()
+##c2.simula2()
+##ch.poisson2()
+pasta.pasta2_correto()

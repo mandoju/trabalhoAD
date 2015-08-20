@@ -78,6 +78,7 @@ def simula2():
                     fim = 1
 
                 esperanca += fila + servidor ##soma o número de clientes no sistema
+                #esperanca += fila
                 tempo += 1  ##adiciona mais um no tempo
 
         ##executando a função main
