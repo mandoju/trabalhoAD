@@ -11,10 +11,10 @@ def academia():
 
 
 
-    lambda_entrada = 0.1
-    u_esteira = 5  ##este parametro que irá variar
-    u_bike = 5
-    p = 1
+    lambda_entrada = 10
+    u_esteira = 1  ##este parametro que irá variar
+    u_bike = 1
+    p = 0.9
     q = 0.9 ##considera isso como q
 
     numero_ciclos= 100
@@ -60,7 +60,7 @@ def academia():
 
             resto = 0
             while(entrada == 0):
-                exponencial = np.random.exponential(lambda_entrada)
+                exponencial = np.random.exponential(1/lambda_entrada)
                 entrada = exponencial ##Gera uma nova entrada exponencial
                 fila_esteira += 1
                 i += 1
@@ -95,8 +95,9 @@ def academia():
 
 
             if(fila_bicicleta == 0 and tempo_proximo_bicicleta == 0):
-                    servidor = 0
-
+                    servidor_bicicleta = 0
+            if(fila_esteira == 0 and tempo_proximo_esteira == 0):
+                    servidor_esteira = 0
 
             #tempo_passado = min(entrada,tempo_proximo_esteira,tempo_proximo_bicicleta)
             a = np.array([entrada,tempo_proximo_esteira,tempo_proximo_bicicleta])
@@ -147,10 +148,10 @@ def academia_cliente():
 
 
 
-    lambda_entrada = 0.1
-    u_esteira = 5  ##este parametro que irá variar
-    u_bike = 5
-    p = 1
+    lambda_entrada = 10
+    u_esteira = 1  ##este parametro que irá variar
+    u_bike = 1
+    p = 0.9
     q = 0.9 ##considera isso como q
 
     numero_ciclos= 1000
@@ -165,7 +166,7 @@ def academia_cliente():
     media_tempo = 0
     for k in range(numero_ciclos):
         print('ciclo:' + str(k))
-        fila_esteira = 1
+        fila_esteira = 0
         fila_bicicleta = 0
         i = 0
         j = 0
@@ -174,7 +175,6 @@ def academia_cliente():
         utilizacao_esteira = 0
         utilizacao_bicicleta = 0
         entrada = 0  ##tempo até a próxima entrada
-        tempo_proximo_esteira = 1 ##tempo até terminar a execução no servidor
         exponencial = np.random.exponential(1/u_esteira)
         tempo_proximo_esteira = exponencial
         tempo_proximo_bicicleta = 0
@@ -192,6 +192,11 @@ def academia_cliente():
             ##    media= media + esperanca/numero_ciclos
             ##    break
 
+            while(entrada == 0):
+                exponencial = np.random.exponential(1/lambda_entrada)
+                entrada = exponencial ##Gera uma nova entrada exponencial
+                fila_esteira += 1
+                i += 1
 
             ## while nescessário caso caia em um tempo = 0 novamente
             resto = 0

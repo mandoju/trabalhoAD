@@ -39,7 +39,7 @@ def simula3():
 
             while (1):
 
-                if(tempo == tempo_simulacao):
+                if(tempo >= tempo_simulacao):
                     esperanca = esperanca / tempo
                     #print('a número médio de pessoas no sistema é: ' + str(esperanca))
                     media= media + esperanca/numero_ciclos
@@ -51,12 +51,9 @@ def simula3():
                 ##    break
 
                 resto = 0
-                while(entrada == 0):
+                if(entrada == 0):
                     uniforme = np.random.uniform(5,15)
-                    entrada = int(uniforme) ##Gera uma nova entrada exponencial
-                    resto += uniforme - entrada
-                    if(resto > 1):
-                        entrada += 1
+                    entrada = uniforme ##Gera uma nova entrada exponencial
                     fila+= 1
                     i += 1
 
@@ -64,20 +61,23 @@ def simula3():
 
                 ## while nescessário caso caia em um tempo = 0 novamente
                 resto = 0
-                while(tempo_proximo == 0 and fila > 0):
+                if(tempo_proximo == 0 and fila > 0):
                     servidor = 1
                     fila -= 1
                     exponencial = np.random.exponential(1/u_servidor)
-                    tempo_proximo = int(exponencial)
-                    resto += exponencial - tempo_proximo
-                    if(resto > 1):
-                        tempo_proximo += 1
+                    tempo_proximo = exponencial
                     j += 1
                 if(fila == 0 and tempo_proximo == 0):
                         servidor = 0
-                else:
-                        tempo_proximo -= 1
+                a = np.array([entrada,tempo_proximo])
+                tempo_passado = np.min(a[np.nonzero(a)])
 
+                #print('tempo entrada:' + str(entrada) + ' | tempo_proximo_esteira:' + str(tempo_proximo_esteira) + ' | tempo proximo_bicicleta' + str(tempo_proximo_bicicleta) + ' | tempo_passado:' + str(tempo_passado))
+
+                entrada -= tempo_passado
+                if(tempo_proximo != 0):
+                    tempo_proximo -= tempo_passado
+                tempo += tempo_passado
                 ##coisas inuteis para parar quando já tudo processado
                 ##nunca será executável pois para depois da ultima remessa da entrada
                 if(fim == 0):

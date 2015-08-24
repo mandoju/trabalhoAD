@@ -115,7 +115,7 @@ def simula_poisson3():
     plt.plot(tempo_entre_saida, cdf_expo,'-r', label="Exponencial")
 
     plt.axis([0, 1.1*(max(tempo_entre_saida)), 0, 1.2*(max(y))])
-    plt.suptitle('Cenário 4 - Partidas exógenas', fontsize=20)
+    plt.suptitle('Cenário 4 - Partidas', fontsize=20)
     plt.xlabel('Tempo entre saídas', fontsize=15)
     plt.ylabel('Y', fontsize=15)
     plt.legend(loc=1, prop={'size':10})

@@ -5,13 +5,16 @@ import cenarios_reentrada as cn
 import checar_saida as ch
 
 import verificar_pasta as pasta
+import verifica_outros_pastas as outros_pastas
+
 import academia as academia
 from simulacoes import cenario1 as c1
 from simulacoes import cenario2 as c2
+from simulacoes import cenario3 as c3
 from simulacoes import poisson2 as p2
 from simulacoes import poisson3 as p3
 from simulacoes import poisson4 as p4
-
+import verifica_outros_pastas as outros_pastas
 
 def main():
 
@@ -258,8 +261,19 @@ def uniforme():
 ##main()
 ##ch.poisson2()
 ##pasta.pasta1()
+##pasta.pasta3()
 ##p4.simula_poisson4()
 ##academia.academia_cliente()
-##c2.simula2()
+##academia.academia_cliente()
+##c1.simula1()
 ##ch.poisson2()
-pasta.pasta3()
+##outros_pastas.pasta_cenario2()
+##pasta.pasta3()
+##.simula3()
+##c2.simula2()
+##pasta.pasta3()
+##p2.simula_poisson2()
+##outros_pastas.pasta_cenario3()
+##outros_pastas.pasta_cenario6_partidas()
+##p2.simula_poisson2()
+p4.simula_poisson4()

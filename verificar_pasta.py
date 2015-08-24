@@ -132,7 +132,7 @@ def pasta2():
     #parametros
     u_servidor = 1    ##U do servidor (tem que variar 1,1,5,2...10
     numero_ciclos= 1
-    tempo_simulacao = 1000
+    tempo_simulacao = 100000
 
     ##TODO: melhores nomes para as variáveis
 
@@ -256,7 +256,7 @@ def pasta2():
             tempo_passado = np.min(a[np.nonzero(a)])
 
             if(servidor == 0):
-                print(fila)
+                #print(fila)
                 tempo_vazio += tempo_passado
 
 
@@ -268,7 +268,7 @@ def pasta2():
             if(tempo_proximo != 0):
                 tempo_proximo -= tempo_passado
             tempo += tempo_passado
-            print(tempo)
+            #print(tempo)
             #tempo += 1  ##adiciona mais um no tempo
 
     ##executando a função main
@@ -289,7 +289,7 @@ def pasta3():
     #parametros
     u_servidor = 1    ##U do servidor (tem que variar 1,1,5,2...10
     numero_ciclos= 1
-    tempo_simulacao = 100000
+    tempo_simulacao = 10000000
 
     ##TODO: melhores nomes para as variáveis
 
@@ -384,7 +384,7 @@ def pasta3():
                 tempo_proximo = exponencial_saida
                 j += 1
 
-            if(fila == 0 and tempo_proximo == 0):
+            if(fila == 0 and tempo_proximo == 0 and servidor == 1):
                 servidor = 0
                 if(volta == 1):
                     if(servidor == 0):
@@ -404,8 +404,8 @@ def pasta3():
                 else:
                     volta = 0
 
-                exponencial_saida = np.random.exponential(1/u_servidor)
-                tempo_proximo = exponencial_saida
+                ##exponencial_saida = np.random.exponential(1/u_servidor)
+                ##tempo_proximo = exponencial_saida
                 j += 1
             else:
                     tempo_proximo -= 1

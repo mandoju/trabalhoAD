@@ -1,4 +1,4 @@
-# -*- coding: latin-1 -*-
+    # -*- coding: latin-1 -*-
 __author__ = 'Rodrigo'
 
 import matplotlib.pyplot as plt

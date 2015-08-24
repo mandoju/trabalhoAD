@@ -12,7 +12,7 @@ def simula_poisson4():
    #parametros
     u_servidor = 1    ##U do servidor (tem que variar 1,1,5,2...10
     numero_ciclos= 1
-    tempo_simulacao = 10000
+    tempo_simulacao = 1000000
 
     ##TODO: melhores nomes para as variáveis
 
@@ -129,8 +129,8 @@ def simula_poisson4():
     plt.plot(tempo_entre_entrada, cdf_expo,'-r', label="Exponencial")
 
     plt.axis([0, 1.1*(max(tempo_entre_entrada)), 0, 1.2*(max(y))])
-    plt.suptitle('Cenário 4 - Partidas exógenas', fontsize=20)
-    plt.xlabel('Tempo entre saídas', fontsize=15)
+    plt.suptitle('Cenário 4 - entradas', fontsize=20)
+    plt.xlabel('Tempo entre entradas', fontsize=15)
     plt.ylabel('Y', fontsize=15)
     plt.legend(loc=1, prop={'size':10})
     plt.show()

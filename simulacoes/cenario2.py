@@ -32,7 +32,7 @@ def simula2():
 
             while (1):
 
-                if(tempo == tempo_simulacao):
+                if(tempo >= tempo_simulacao):
                     esperanca = esperanca / tempo
                     #print('a número médio de pessoas no sistema é: ' + str(esperanca))
                     media= media + esperanca/numero_ciclos
@@ -44,11 +44,8 @@ def simula2():
                 ##    break
 
                 resto = 0
-                while(entrada == 0):
-                    entrada = int(lambda_tempo) ##Gera uma nova entrada exponencial
-                    resto += lambda_tempo - int(lambda_tempo)
-                    if(resto > 1):
-                        entrada += 1
+                if(entrada == 0):
+                    entrada = 1/lambda_tempo ##Gera uma nova entrada exponencial
                     fila+= 1
                     i += 1
 
@@ -56,15 +53,24 @@ def simula2():
 
                 ## while nescessário caso caia em um tempo = 0 novamente
                 resto = 0
-                while(tempo_proximo == 0 and fila > 0):
+                if(tempo_proximo == 0 and fila > 0):
                     servidor = 1
                     fila -= 1
-                    tempo_proximo = int(np.random.exponential(1))
+                    tempo_proximo = np.random.exponential(1)
                     j += 1
                 if(fila == 0 and tempo_proximo == 0):
                         servidor = 0
-                else:
-                        tempo_proximo -= 1
+
+                a = np.array([entrada,tempo_proximo])
+                tempo_passado = np.min(a[np.nonzero(a)])
+
+            #print('tempo entrada:' + str(entrada) + ' | tempo_proximo_esteira:' + str(tempo_proximo_esteira) + ' | tempo proximo_bicicleta' + str(tempo_proximo_bicicleta) + ' | tempo_passado:' + str(tempo_passado))
+
+                entrada -= tempo_passado
+                if(tempo_proximo != 0):
+                    tempo_proximo -= tempo_passado
+                tempo += tempo_passado
+                ##print(tempo)
 
                 ##coisas inuteis para parar quando já tudo processado
                 ##nunca será executável pois para depois da ultima remessa da entrada
